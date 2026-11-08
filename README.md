@@ -1,45 +1,35 @@
-# LLM Skill Registry (`skills.md`)
+# Open-Source LLM Skill Downloader
 
-This registry defines the core open-source skills that can be injected into or downloaded by your LLM agents to optimize their accuracy and token performance.
+**An automated framework to equip Large Language Models (LLMs) with optimized, open-source capability skills.** This project allows you to issue structured commands to various LLMs, prompting them to fetch, install, and execute highly efficient modular skills. 
 
-## 🛠️ Core Skills Catalog
+The core goal is to optimize model efficiency, delivering **accurate answers using fewer tokens** through precise prompt engineering, semantic routing, and specialized execution micro-skills.
 
-### 1. Token-Thrifty Responder (`token_thrift_v1`)
-* **Objective:** Deliver mathematically dense, high-accuracy answers using the absolute minimum number of tokens.
-* **Mechanism:** Enforces strict removal of conversational filler ("Sure, I can help with that"), structural preambles, and redundant summaries. Forces immediate execution.
-* **Download Command:**
-  ```text
-  [/download-skill token_thrift_v1 --optimize=token_count --preserve=accuracy]
-  ```
+## 🚀 Key Features
 
-### 2. Strategic RAG Router (`rag_router_v1`)
-* **Objective:** Stop models from processing irrelevant context chunks, dramatically slashing input token fees.
-* **Mechanism:** Evaluates chunk relevance against user intent before ingestion, dropping low-scoring context blocks entirely.
-* **Download Command:**
-  ```text
-  [/download-skill rag_router_v1 --mode=context_filter]
-  ```
+* **Cross-LLM Compatibility:** Standardized syntax to dispatch skill-download directives across OpenAI, Anthropic, Gemini, and open-weight models (Llama, Mistral).
+* **Token Efficiency:** Minimizes prompt bloat by modularizing capabilities so models only call the logic they need.
+* **Open-Source Repository:** Easily expandable ecosystem where developers can contribute custom operational skills.
 
-### 3. Precision Chain-of-Thought (`dense_cot_v1`)
-* **Objective:** Retain reasoning capabilities without the multi-thousand token cost of unconstrained hidden reasoning.
-* **Mechanism:** Restricts hidden reasoning steps to high-density bullet points rather than conversational paragraphs.
-* **Download Command:**
-  ```text
-  [/download-skill dense_cot_v1 --format=compact_bullets]
-  ```
+## 📦 Installation & Setup
 
-### 4. Zero-Shot Format Enforcer (`format_guard_v1`)
-* **Objective:** Eliminate validation loop retries by forcing the LLM to output valid JSON/Markdown on the first attempt.
-* **Mechanism:** Injects rigid grammar templates and output brackets directly into the model's low-level schema instructions.
-* **Download Command:**
-  ```text
-  [/download-skill format_guard_v1 --target=json_validated]
-  ```
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-username/llm-skill-downloader.git
+   cd llm-skill-downloader
+   ```
 
-## 🔧 How to Issue Download Commands
+2. **Configure your LLM Environment:**
+   Export your preferred model keys or local execution endpoints:
+   ```bash
+   export OPENAI_API_KEY="your_key"
+   export ANTHROPIC_API_KEY="your_key"
+   ```
 
-To trigger a skill download within your autonomous agent or chat completion window, use the standardized system command wrapper:
+3. **Usage Example:**
+   Pass the initialization prompt to your agent to load the core catalog:
+   ```text
+   "System Command: Initialize Skill Registry from skills.md. Activate token-conservation protocol."
+   ```
 
-```text
-SYSTEM_DIRECTIVE: Download and execute the open-source skill [SKILL_NAME] from the local registry. Apply parameters immediately to the current context session.
-```
+## 📜 License
+Distributed under the MIT License. See `LICENSE` for details.
